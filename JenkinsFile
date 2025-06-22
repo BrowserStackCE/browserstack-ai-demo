@@ -1,5 +1,8 @@
 pipeline {
 	agent any
+    tools {
+		maven any
+	}
 	stages {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
