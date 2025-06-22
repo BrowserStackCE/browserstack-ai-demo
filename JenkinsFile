@@ -1,0 +1,18 @@
+pipeline {
+	agent any
+	stages {
+	    stage ('Initiate tests on BrowserStack') {
+	        steps {
+    			browserstack(credentialsId: "${credentials}") {
+                    sh "mvn clean -P ${configuration} test"
+                }
+	        }
+		}
+	}
+	post {
+		always {
+			junit 'target/surefire-reports/TEST-*.xml'
+			browserStackReportPublisher 'automate'
+		}
+	}
+}

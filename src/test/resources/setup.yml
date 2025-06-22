@@ -1,0 +1,11 @@
+userName: BROWSERSTACK_USERNAME
+accessKey: BROWSERSTACK_ACCESS_KEY
+
+projectName: BrowserStack Samples
+buildName: AI Self Healing
+
+platforms:
+  - os: OS X
+    osVersion: Sonoma
+    browserName: Chrome
+    browserVersion: latest
