@@ -4,7 +4,11 @@ pipeline {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
-                    sh "mvn clean -P ${configuration} test"
+                    sshagent(['samirans89_demo_jenkins']) {
+                        withEnv(['BROWSERSTACK_USERNAME=' + user]) {
+                            sh "mvn clean -P ${configuration} test"
+                        }
+                    }
                 }
 	        }
 		}
