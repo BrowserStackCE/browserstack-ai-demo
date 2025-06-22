@@ -6,7 +6,9 @@ pipeline {
     			browserstack(credentialsId: "${credentials}") {
                     sshagent(['samirans89_demo_jenkins']) {
                         withEnv(['BROWSERSTACK_USERNAME=' + user]) {
-                            sh "mvn clean -P ${configuration} test"
+                            sh label: '', returnStatus: true, script: '''#!/bin/bash -l
+                                mvn clean -P ${configuration} test
+                            '''
                         }
                     }
                 }
