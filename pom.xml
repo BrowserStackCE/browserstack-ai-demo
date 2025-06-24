@@ -77,7 +77,7 @@
                       <systemProperties>
                           <property>
                               <name>browserstack.config</name>
-                              <value>src/test/resources/setup.yml</value>
+                              <value>src/test/resources/healed.yml</value>
                           </property>
                       </systemProperties>
                       <includes>
@@ -100,7 +100,7 @@
               <systemProperties>
                   <property>
                       <name>browserstack.config</name>
-                      <value>src/test/resources/setup.yml</value>
+                      <value>src/test/resources/failed.yml</value>
                   </property>
               </systemProperties>
                 <includes>
