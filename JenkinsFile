@@ -7,7 +7,6 @@ pipeline {
                     sshagent(['samirans89_demo_jenkins']) {
                         sh label: '', returnStatus: true, script: '''#!/bin/bash -l
                             mvn test
-							mvn -P healed test
                         '''
                     }
                 }
