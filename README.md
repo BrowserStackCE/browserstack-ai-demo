@@ -1,4 +1,4 @@
-# browserstack-ai-selfheal
+# Browserstack AI Self Heal
 
 This project demonstrates automated UI testing using Selenium WebDriver and TestNG, with a focus on self-healing test capabilities.
 
@@ -41,7 +41,8 @@ mvn -P healed test
 
 ## Project Structure
 
-- `src/test/java/org/browserstack/selfheal/SetupTest.java`: Main test class.
+- `src/test/java/org/browserstack/selfheal/SetupTest.java`: Setup test class.
+- `src/test/java/org/browserstack/selfheal/SelfHealTest.java`: Self heal test class.
 - `logs/`: Log files.
 - `target/`: Build output and reports.
 
