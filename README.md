@@ -17,16 +17,11 @@ This project demonstrates automated UI testing using Selenium WebDriver and Test
 
 ## Setup
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/browserstack-ai-selfheal.git
-   cd browserstack-ai-selfheal
-   ```
-
-2. Install dependencies:
-   ```sh
-   mvn clean install
-   ```
+Clone the repository:
+```sh
+git clone https://github.com/yourusername/browserstack-ai-selfheal.git
+cd browserstack-ai-selfheal
+```
 
 ## Running Tests
 
@@ -34,14 +29,9 @@ To execute the tests, first run:
 ```sh
 mvn test
 ```
-Then run:
-```sh
-mvn -P healed test
-```
 
 ## Project Structure
 
-- `src/test/java/org/browserstack/selfheal/SetupTest.java`: Setup test class.
 - `src/test/java/org/browserstack/selfheal/SelfHealTest.java`: Self heal test class.
 - `logs/`: Log files.
 - `target/`: Build output and reports.
