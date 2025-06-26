@@ -6,7 +6,8 @@ pipeline {
     			browserstack(credentialsId: "${credentials}") {
                     sshagent(['samirans89_demo_jenkins']) {
                         sh label: '', returnStatus: true, script: '''#!/bin/bash -l
-                            mvn clean -P ${configuration} test
+                            mvn test
+							mvn -P healed test
                         '''
                     }
                 }
