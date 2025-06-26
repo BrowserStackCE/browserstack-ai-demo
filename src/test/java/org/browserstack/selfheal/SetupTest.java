@@ -28,7 +28,7 @@ public class SetupTest {
     }
 
     @Test
-    public void selfHeal() {
+    public void testSetup() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://shashankg-gollapally.github.io/Automate_Selfheal_Pages/index.html");
         Select pageSelector = new Select(wait.until(elementToBeClickable(By.id("page-selector"))));
