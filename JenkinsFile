@@ -4,11 +4,9 @@ pipeline {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
-                    sshagent(['samirans89_demo_jenkins']) {
-                        sh label: '', returnStatus: true, script: '''#!/bin/bash -l
-                            mvn test
-                        '''
-                    }
+					sh label: '', returnStatus: true, script: '''#!/bin/bash -l
+						mvn test
+					'''
                 }
 	        }
 		}
