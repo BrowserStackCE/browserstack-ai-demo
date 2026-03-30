@@ -4,9 +4,11 @@ pipeline {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
-					sh label: '', returnStatus: true, script: '''#!/bin/bash -l
-						mvn test
-					'''
+                    sshagent(['dhvani-git']) {
+                        sh label: '', returnStatus: true, script: '''#!/bin/bash -l
+                            mvn test
+                        '''
+                    }
                 }
 	        }
 		}
