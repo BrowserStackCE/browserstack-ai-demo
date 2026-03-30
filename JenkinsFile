@@ -1,28 +1,31 @@
 pipeline {
-	agent any
-	stages {
-	    stage ('Initiate tests on BrowserStack') {
-	        steps {
-    			browserstack(credentialsId: "${credentials}") {
-					def user = "${env.BROWSERSTACK_USERNAME}"
-					if (user.contains('-')) {
-						user = user.substring(0, user.lastIndexOf('-'))
-					}
-                    sshagent(['dhvani-git']) {
-						withEnv(['BROWSERSTACK_USERNAME=' + user]) {
-							sh label: '', returnStatus: true, script: '''#!/bin/bash -l
-								mvn test
-							'''
-						}
+    agent any
+    stages {
+        stage ('Initiate tests on BrowserStack') {
+            steps {
+                browserstack(credentialsId: "${params.credentials ?: 'your-default-id'}") {
+                    script {
+                        def user = env.BROWSERSTACK_USERNAME
+                        if (user && user.contains('-')) {
+                            user = user.substring(0, user.lastIndexOf('-'))
+                        }
+                        sshagent(['dhvani-git']) {
+                            withEnv(["BROWSERSTACK_USERNAME=${user}"]) {
+                                sh """
+                                    #!/bin/bash -l
+                                    mvn test
+                                """
+                            }
+                        }
                     }
                 }
-	        }
-		}
-	}
-	post {
-		always {
-			junit 'target/surefire-reports/TEST-*.xml'
-			browserStackReportPublisher 'automate'
-		}
-	}
+            }
+        }
+    }
+    post {
+        always {
+            junit 'target/surefire-reports/TEST-*.xml'
+            browserStackReportPublisher 'automate'
+        }
+    }
 }
