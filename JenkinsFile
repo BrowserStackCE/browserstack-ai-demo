@@ -4,10 +4,16 @@ pipeline {
 	    stage ('Initiate tests on BrowserStack') {
 	        steps {
     			browserstack(credentialsId: "${credentials}") {
+					def user = "${env.BROWSERSTACK_USERNAME}"
+					if (user.contains('-')) {
+						user = user.substring(0, user.lastIndexOf('-'))
+					}
                     sshagent(['dhvani-git']) {
-                        sh label: '', returnStatus: true, script: '''#!/bin/bash -l
-                            mvn test
-                        '''
+						withEnv(['BROWSERSTACK_USERNAME=' + user]) {
+							sh label: '', returnStatus: true, script: '''#!/bin/bash -l
+								mvn test
+							'''
+						}
                     }
                 }
 	        }
