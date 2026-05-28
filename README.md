@@ -33,7 +33,7 @@ mvn test
 ## Project Structure
 
 - `src/test/java/org/browserstack/selfheal/SelfHealTest.java`: Self heal test class.
-- `logs/`: Log files.
+- `log/`: Log files.
 - `target/`: Build output and reports.
 
 ## License
