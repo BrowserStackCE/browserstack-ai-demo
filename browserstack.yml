@@ -7,7 +7,7 @@ buildName: AI Self Healing
 platforms:
   - os: Windows
     osVersion: 11
-    browserName: Chrome
+    browserName: Edge
     browserVersion: latest
 
 selfHeal: true
