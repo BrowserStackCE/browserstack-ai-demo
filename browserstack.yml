@@ -1,7 +1,7 @@
 userName: BROWSERSTACK_USERNAME
 accessKey: BROWSERSTACK_ACCESS_KEY
 
-projectName: BrowserStack Samples
+projectName: AI SelfHeal
 buildName: AI Self Healing
 
 platforms:

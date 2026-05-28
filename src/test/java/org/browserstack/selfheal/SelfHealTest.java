@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 
 public class SelfHealTest {
 
@@ -27,23 +27,29 @@ public class SelfHealTest {
         driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
     }
 
-
     @Test(priority = 1)
     public void testSetup() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://shashankg-gollapally.github.io/Automate_Selfheal_Pages/index.html");
-        Select pageSelector = new Select(wait.until(elementToBeClickable(By.id("page-selector"))));
-        pageSelector.selectByVisibleText("Initial page");
-        wait.until(elementToBeClickable(By.id("username"))).sendKeys("test123");
+        driver.get("https://finstack-alpha.vercel.app");
+        driver.findElement(By.id("email")).sendKeys("sujay.s@browserstack.com");
+        driver.findElement(By.id("password")).sendKeys("BrowserStack@123");
+        driver.findElement(By.id("sign_in")).click();
+        wait.until(urlContains("dashboard"));
+        String welcomeText = driver.findElement(By.cssSelector("h1.text-3xl")).getText();
+        Assert.assertEquals(welcomeText, "Good morning, Sujay", "Incorrect login");
     }
 
     @Test(priority = 2)
     public void testSelfHeal() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get("https://shashankg-gollapally.github.io/Automate_Selfheal_Pages/index.html");
-        Select pageSelector = new Select(wait.until(elementToBeClickable(By.id("page-selector"))));
-        pageSelector.selectByVisibleText("Element attribute modified page");
-        wait.until(elementToBeClickable(By.id("username"))).sendKeys("test123");
+        driver.get("https://finstack-alpha.vercel.app");
+        driver.findElement(By.xpath("//button[text()='Enable']")).click();
+        driver.findElement(By.id("email")).sendKeys("sujay.s@browserstack.com");
+        driver.findElement(By.id("password")).sendKeys("BrowserStack@123");
+        driver.findElement(By.id("sign_in")).click();
+        wait.until(urlContains("dashboard"));
+        String welcomeText = driver.findElement(By.cssSelector("h1.text-3xl")).getText();
+        Assert.assertEquals(welcomeText, "Good morning, Sujay", "Incorrect login");
     }
 
     @AfterMethod(alwaysRun = true)
